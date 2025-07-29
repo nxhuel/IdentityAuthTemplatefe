@@ -55,18 +55,25 @@
           id="password"
           formControlName="password"
         />
-        @if (registerForm.get('password')?.touched &&
-        registerForm.get('password')?.invalid) { @if
-        (registerForm.get('password')?.hasError('required')) {
+        @if(registerForm.get('password')?.touched &&
+        registerForm.get('password')?.invalid) {
+        @if(registerForm.get('password')?.hasError('required')) {
         <small class="text-danger">La contraseña es obligatoria.</small>
-        } @else if (registerForm.get('password')?.hasError('minlength')) {
+        } @if(registerForm.get('password')?.hasError('minlength')) {
         <small class="text-danger"
-          >La contraseña debe tener al menos 8 caracteres.</small
+          >La contraseña debe tener al menos 7 caracteres.</small
+        >
+        } @if(registerForm.get('password')?.hasError('pattern')) {
+        <small class="text-danger"
+          > La contraseña debe contener al menos una letra minúscula y un
+          carácter especial.</small
         >
         } }
       </div>
       <div class="text-center text-muted">
-        <small>Ya tenes cuenta? <a [routerLink]="['/sign-in']">Inicia Sesión</a> </small>
+        <small
+          >Ya tenes cuenta? <a [routerLink]="['/sign-in']">Inicia Sesión</a>
+        </small>
       </div>
       <div class="text-end">
         <button
